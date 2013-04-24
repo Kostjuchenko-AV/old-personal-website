@@ -161,7 +161,7 @@ readyState(function()
     /**
      * Vegas background image slider
      */
-    /*$.vegas('slideshow',
+    $.vegas('slideshow',
     {
         delay: 10000,
         backgrounds: [
@@ -175,7 +175,7 @@ readyState(function()
             { src: 'img/bg8.jpg', fade: 2000 },
             { src: 'img/bg9.jpg', fade: 2000 }
         ]
-    })('overlay');*/
+    })('overlay');
 
     /**
      * Lightbox

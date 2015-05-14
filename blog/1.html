@@ -1,0 +1,24 @@
+<h1>Blog 1</h1>
+<h2>30/04/15</h2>
+<h2>Debugging callbacks</h2>
+<p>
+Debugging javascript callbacks on DOM elements with the chrome debugger.
+
+First you need to identify the element you want to debug callbacks on. For me this element was ```type="hidden"``` which I made visible by changing it to ```type="text"```. Other methods may be required to make this element visible, for example changing ```display:none``` to ```display=block``.
+
+You may not need to have your element visible, but overall it helps in the debug process.
+
+Using the JQuery event handler ```$($0).change(function( console.log("changed"); );``` can help in debugging user interation, but unfortunately doesn't help when the input is programatically set which is the case with callbacks.
+
+In order to prevent the console stealing focus when trying to debug blur events. Make sure to have a breakpoint that isn’t too generic to be triggered on both focus and blur. If this happens then when you click the input the console will steal focus and you won’t be able to trigger the blur event. You can do this by creating a conditional breakpoint which evaluates the jquery event “event.type === focus”
+
+One attribute to pay attention to on the event is event.target. This is the object that dispatched the event which may give you a clue as to where the event was created, especially if the event was created from the current element, or from another.
+
+You need to understand the way the event handler is defined. Some event handlers are automatically added to certain elements via CSS selectors via external libraries, others are defined within your codebase itself.
+
+For event handlers within your codebase, the evaluation function is easy to find. If the event is handled within a library, it can be a bit convoluted to find the actual evaluation function.
+
+Debugging external libraries and finding the actual execution may be optimized away. External libraries also serve to genericize the event handlers. These can both complicate debugging event handlers.
+
+Debugging code written in an functional reactive framework solely used in isolation with no tests can be hard.
+</p>
